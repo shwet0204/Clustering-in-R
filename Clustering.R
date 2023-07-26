@@ -1,14 +1,12 @@
-#sxs220127
-#ShwetShah
-#Q1
+#Loading Data
 
-setwd("/Users/shwetshah/Desktop/BA with R/Assignment 3")
+setwd("/Users/shwetshah/Desktop")
 df <- read.csv(file='AirlineLoyalty.csv', stringsAsFactors = FALSE)
 row.names(df) <- df[,1];
 df.norm <- data.frame(sapply(df[, -1], scale));
 row.names(df.norm) <- df$ID.
 
-#Q2
+#Hierarchical clustering with Euclidean distance and Ward’s method
 dist <- dist(df.norm, method = "euclidean")
 dist
 hclus <- hclust(dist, method = "ward.D")
@@ -21,7 +19,7 @@ table(member_slink_1)
 
 df.norm$Label <- member_slink_1
 
-#Q3)
+#Using silhouette score to find the best k
 
 library(cluster)
 
@@ -62,7 +60,7 @@ g
 
 
 
-#Q4)
+#Comapring the 2 clusters
 
 cluster1_hc <- data[data$hc_cluster == 1, ]
 cluster2_hc <- data[data$hc_cluster == 2, ]
